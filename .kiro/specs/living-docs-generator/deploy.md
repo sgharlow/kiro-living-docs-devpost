@@ -66,7 +66,7 @@ npm run dev
     "living-docs": {
       "command": "node",
       "args": ["./dist/server.js"],
-      "cwd": "/path/to/living-docs-generator"
+      "cwd": "/absolute/path/to/kiro-living-docs-devpost"
     }
   }
 }

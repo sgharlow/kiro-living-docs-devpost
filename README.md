@@ -1,5 +1,10 @@
 # Living Documentation Generator
 
+[![CI](https://github.com/sgharlow/kiro-living-docs-devpost/workflows/CI/badge.svg)](https://github.com/sgharlow/kiro-living-docs-devpost/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.2+-blue.svg)](https://www.typescriptlang.org/)
+
 An intelligent MCP server for Kiro that automatically generates, maintains, and updates project documentation in real-time.
 
 ## Features
@@ -21,8 +26,8 @@ An intelligent MCP server for Kiro that automatically generates, maintains, and 
 
 1. Clone and build the project:
 ```bash
-git clone <repository-url>
-cd living-docs-generator
+git clone https://github.com/sgharlow/kiro-living-docs-devpost.git
+cd kiro-living-docs-devpost
 npm install
 npm run build
 ```
@@ -34,10 +39,13 @@ npm run build
     "living-docs": {
       "command": "node",
       "args": ["./dist/server.js"],
-      "cwd": "/path/to/living-docs-generator"
+      "cwd": "/absolute/path/to/kiro-living-docs-devpost"
     }
   }
 }
+```
+
+Replace `/absolute/path/to/kiro-living-docs-devpost` with the actual path where you cloned the repository.
 ```
 
 3. Restart Kiro to load the MCP server
@@ -168,10 +176,28 @@ This is expected behavior on Windows when the Go parser binary is not available.
 
 ## Contributing
 
-1. Follow the development rules in `.kiro/specs/living-docs-generator/rules.md`
-2. Ensure all tests pass before submitting changes
-3. Update documentation for any new features
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details on:
+
+- Setting up the development environment
+- Code style guidelines
+- Testing requirements
+- Pull request process
+
+## Security
+
+For security vulnerabilities, please see our [Security Policy](SECURITY.md).
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for a detailed history of changes.
+
+## Links
+
+- **Repository**: [GitHub](https://github.com/sgharlow/kiro-living-docs-devpost)
+- **Issues**: [Bug Reports & Feature Requests](https://github.com/sgharlow/kiro-living-docs-devpost/issues)
+- **Discussions**: [Community Discussions](https://github.com/sgharlow/kiro-living-docs-devpost/discussions)
+- **Demo**: [Live Demo Guide](demo/DEMO_GUIDE.md)
 
 ## License
 
-MIT License - see LICENSE file for details
+MIT License - see [LICENSE](LICENSE) file for details.

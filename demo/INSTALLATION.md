@@ -37,8 +37,8 @@ npm install --save-dev @kiro/living-docs-generator
 
 ```bash
 # Clone the repository
-git clone https://github.com/kiro-ai/living-docs-generator.git
-cd living-docs-generator
+git clone https://github.com/sgharlow/kiro-living-docs-devpost.git
+cd kiro-living-docs-devpost
 
 # Install dependencies
 npm install
@@ -674,7 +674,7 @@ DEBUG=living-docs:watcher living-docs serve
 ### Getting Help
 
 - **Documentation**: [Full documentation](https://docs.kiro.ai/living-docs)
-- **GitHub Issues**: [Report bugs and request features](https://github.com/kiro-ai/living-docs-generator/issues)
+- **GitHub Issues**: [Report bugs and request features](https://github.com/sgharlow/kiro-living-docs-devpost/issues)
 - **Community**: [Join our Discord server](https://discord.gg/kiro-ai)
 - **Email**: support@kiro.ai
 

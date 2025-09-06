@@ -14,8 +14,8 @@ Welcome to the Living Documentation Generator demo! This guide will walk you thr
 
 1. **Clone and install dependencies:**
    ```bash
-   git clone <repository-url>
-   cd living-docs-demo
+   git clone https://github.com/sgharlow/kiro-living-docs-devpost.git
+   cd kiro-living-docs-devpost
    npm run install:all
    ```
 
