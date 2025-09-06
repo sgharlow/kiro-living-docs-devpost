@@ -1,0 +1,27 @@
+graph TB
+    src_index["📄 index"]
+    src_App["🏛️ App"]
+    src_services_UserService["🏛️ UserService"]
+    class src_services_UserService serviceModule
+    src_services_AuthService["🏛️ AuthService"]
+    class src_services_AuthService serviceModule
+    src_utils_ApiClient["🏛️ ApiClient"]
+    class src_utils_ApiClient utilModule
+    src_utils_Logger["🏛️ Logger"]
+    class src_utils_Logger utilModule
+    src_models_User["🏛️ User"]
+    src_interfaces_IUserRepository["📋 IUserRepository"]
+    src_components_UserCard_tsx["📋 UserCard.tsx"]
+    class src_components_UserCard_tsx componentModule
+    src_components_UserList_tsx["📋 UserList.tsx"]
+    class src_components_UserList_tsx componentModule
+    src_config["📄 config"]
+    src_services_UserService ====> src_interfaces_IUserRepository
+    src_models_User ====> src_models_User
+
+    classDef coreModule fill:#ff6b6b,stroke:#333,stroke-width:2px,color:#fff
+    classDef utilModule fill:#4ecdc4,stroke:#333,stroke-width:2px,color:#fff
+    classDef componentModule fill:#45b7d1,stroke:#333,stroke-width:2px,color:#fff
+    classDef serviceModule fill:#f9ca24,stroke:#333,stroke-width:2px,color:#333
+    classDef testModule fill:#6c5ce7,stroke:#333,stroke-width:2px,color:#fff
+    

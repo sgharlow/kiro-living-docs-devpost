@@ -1,0 +1,135 @@
+graph TB
+    subgraph "Developer Environment"
+        KIRO[🎯 Kiro IDE]
+        USER[👨‍💻 Developer]
+        PROJECT[📁 Project Files]
+    end
+    
+    subgraph "Living Docs Generator (MCP Server)"
+        MCP[🔌 MCP Server Interface]
+        
+        subgraph "Core Services"
+            WATCHER[👁️ File Watcher<br/>chokidar]
+            DETECTOR[🔍 Project Detector<br/>Auto-detection]
+            CONFIG[⚙️ Config Manager<br/>Smart defaults]
+        end
+        
+        subgraph "Analysis Engine"
+            TS_ANALYZER[📘 TypeScript Analyzer]
+            PY_ANALYZER[🐍 Python Analyzer]
+            GO_ANALYZER[🐹 Go Analyzer]
+            API_ANALYZER[🌐 API Analyzer]
+            GIT_ANALYZER[📊 Git Analyzer]
+        end
+        
+        subgraph "Generation Pipeline"
+            DOC_GEN[📝 Documentation Generator]
+            MD_GEN[📄 Markdown Generator]
+            HTML_GEN[🌐 HTML Generator]
+            API_GEN[📋 OpenAPI Generator]
+            ARCH_GEN[🏗️ Architecture Generator]
+        end
+        
+        subgraph "Enhancement Systems"
+            CACHE[💾 Analysis Cache<br/>Performance]
+            SEARCH[🔍 Search Service<br/>Fuzzy search]
+            SYNC[🔄 Real-time Sync<br/>WebSocket]
+            ANALYTICS[📊 Usage Analytics]
+        end
+        
+        subgraph "User Experience"
+            WIZARD[🧙‍♂️ Configuration Wizard]
+            ONBOARD[🚀 Onboarding Manager]
+            TROUBLE[🔧 Troubleshooting Guide]
+            HOOKS[🪝 Hook Manager]
+        end
+        
+        subgraph "Output & Serving"
+            WEB_SERVER[🌐 Web Server<br/>Express + WebSocket]
+            TEMPLATES[🎨 Template System<br/>HTML/CSS/JS]
+            STATIC[📁 Static Assets]
+        end
+    end
+    
+    subgraph "Generated Documentation"
+        DOCS_WEB[🌐 Interactive Web Docs<br/>Real-time updates]
+        DOCS_MD[📄 Markdown Files<br/>GitHub compatible]
+        DOCS_API[📋 API Documentation<br/>OpenAPI spec]
+        DIAGRAMS[📊 Architecture Diagrams<br/>Mermaid]
+    end
+    
+    %% User Interactions
+    USER --> KIRO
+    KIRO --> MCP
+    
+    %% MCP Tool Calls
+    MCP --> DETECTOR
+    MCP --> CONFIG
+    MCP --> WIZARD
+    MCP --> ONBOARD
+    MCP --> TROUBLE
+    MCP --> ANALYTICS
+    
+    %% File Monitoring
+    PROJECT --> WATCHER
+    WATCHER --> CACHE
+    
+    %% Analysis Flow
+    DETECTOR --> TS_ANALYZER
+    DETECTOR --> PY_ANALYZER
+    DETECTOR --> GO_ANALYZER
+    WATCHER --> TS_ANALYZER
+    WATCHER --> PY_ANALYZER
+    WATCHER --> GO_ANALYZER
+    WATCHER --> API_ANALYZER
+    WATCHER --> GIT_ANALYZER
+    
+    %% Generation Pipeline
+    TS_ANALYZER --> DOC_GEN
+    PY_ANALYZER --> DOC_GEN
+    GO_ANALYZER --> DOC_GEN
+    API_ANALYZER --> API_GEN
+    GIT_ANALYZER --> ARCH_GEN
+    
+    DOC_GEN --> MD_GEN
+    DOC_GEN --> HTML_GEN
+    API_GEN --> HTML_GEN
+    ARCH_GEN --> HTML_GEN
+    
+    %% Enhancement Integration
+    DOC_GEN --> CACHE
+    HTML_GEN --> SEARCH
+    HTML_GEN --> SYNC
+    
+    %% Output Generation
+    MD_GEN --> DOCS_MD
+    HTML_GEN --> TEMPLATES
+    TEMPLATES --> WEB_SERVER
+    WEB_SERVER --> DOCS_WEB
+    API_GEN --> DOCS_API
+    ARCH_GEN --> DIAGRAMS
+    
+    %% Real-time Updates
+    SYNC --> DOCS_WEB
+    WATCHER --> SYNC
+    
+    %% Styling
+    classDef userLayer fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef mcpLayer fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef coreLayer fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
+    classDef analysisLayer fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef generationLayer fill:#fce4ec,stroke:#880e4f,stroke-width:2px
+    classDef enhancementLayer fill:#f1f8e9,stroke:#33691e,stroke-width:2px
+    classDef uxLayer fill:#e0f2f1,stroke:#004d40,stroke-width:2px
+    classDef outputLayer fill:#e8eaf6,stroke:#1a237e,stroke-width:2px
+    classDef docsLayer fill:#fff8e1,stroke:#ff6f00,stroke-width:2px
+    
+    class USER,KIRO,PROJECT userLayer
+    class MCP mcpLayer
+    class WATCHER,DETECTOR,CONFIG coreLayer
+    class TS_ANALYZER,PY_ANALYZER,GO_ANALYZER,API_ANALYZER,GIT_ANALYZER analysisLayer
+    class DOC_GEN,MD_GEN,HTML_GEN,API_GEN,ARCH_GEN generationLayer
+    class CACHE,SEARCH,SYNC,ANALYTICS enhancementLayer
+    class WIZARD,ONBOARD,TROUBLE,HOOKS uxLayer
+    class WEB_SERVER,TEMPLATES,STATIC outputLayer
+    class DOCS_WEB,DOCS_MD,DOCS_API,DIAGRAMS docsLayer

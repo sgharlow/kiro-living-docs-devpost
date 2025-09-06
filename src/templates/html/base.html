@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{description}}">
+    <title>{{title}} - {{projectName}}</title>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{baseUrl}}/styles/documentation.css">
+    <link rel="stylesheet" href="{{baseUrl}}/styles/syntax-highlighting.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="{{baseUrl}}/assets/favicon.svg">
+    
+    <!-- Meta tags for better SEO and sharing -->
+    <meta property="og:title" content="{{title}} - {{projectName}}">
+    <meta property="og:description" content="{{description}}">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{title}} - {{projectName}}">
+    <meta name="twitter:description" content="{{description}}">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="{{baseUrl}}/scripts/documentation.js" as="script">
+    
+    <!-- Custom CSS if provided -->
+    {{#if customCSS}}
+    <style>
+        {{customCSS}}
+    </style>
+    {{/if}}
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+    
+    <!-- Main Layout -->
+    <div class="doc-layout">
+        <!-- Sidebar -->
+        <aside class="doc-sidebar" role="navigation" aria-label="Main navigation">
+            <!-- Search -->
+            <div class="search-container">
+                <div style="position: relative;">
+                    <input 
+                        type="text" 
+                        class="search-input" 
+                        placeholder="Search documentation... (Ctrl+K)"
+                        aria-label="Search documentation"
+                    >
+                    <div class="search-results" style="display: none;"></div>
+                </div>
+            </div>
+            
+            <!-- Navigation Menu -->
+            <nav class="nav-menu">
+                {{#if navigation}}
+                    {{#each navigation}}
+                    <div class="nav-section">
+                        {{#if title}}
+                        <div class="nav-section-title">{{title}}</div>
+                        {{/if}}
+                        <ul class="nav-list">
+                            {{#each items}}
+                            <li class="nav-item">
+                                <a href="{{url}}" class="nav-link {{#if active}}active{{/if}}">
+                                    {{name}}
+                                </a>
+                                {{#if children}}
+                                <ul class="nav-list nav-nested">
+                                    {{#each children}}
+                                    <li class="nav-item">
+                                        <a href="{{url}}" class="nav-link {{#if active}}active{{/if}}">
+                                            {{name}}
+                                        </a>
+                                    </li>
+                                    {{/each}}
+                                </ul>
+                                {{/if}}
+                            </li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                    {{/each}}
+                {{else}}
+                <!-- Default navigation structure -->
+                <div class="nav-section">
+                    <div class="nav-section-title">Documentation</div>
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="#overview" class="nav-link">Overview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#api" class="nav-link">API Reference</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#examples" class="nav-link">Examples</a>
+                        </li>
+                    </ul>
+                </div>
+                {{/if}}
+            </nav>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="doc-main">
+            <!-- Header -->
+            <header class="doc-header">
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                    <div>
+                        <button class="sidebar-toggle" aria-label="Toggle sidebar" style="display: none;">☰</button>
+                        <h1 style="margin: 0; font-size: var(--font-size-xl);">{{projectName}}</h1>
+                    </div>
+                    <div class="header-actions">
+                        {{#if githubUrl}}
+                        <a href="{{githubUrl}}" class="header-link" target="_blank" rel="noopener">
+                            GitHub
+                        </a>
+                        {{/if}}
+                        {{#if version}}
+                        <span class="badge badge-secondary">v{{version}}</span>
+                        {{/if}}
+                    </div>
+                </div>
+                
+                <!-- Breadcrumbs -->
+                {{#if breadcrumbs}}
+                <nav class="breadcrumbs" aria-label="Breadcrumb">
+                    {{#each breadcrumbs}}
+                    <div class="breadcrumb-item">
+                        {{#if url}}
+                        <a href="{{url}}" class="breadcrumb-link">{{name}}</a>
+                        {{else}}
+                        <span>{{name}}</span>
+                        {{/if}}
+                    </div>
+                    {{/each}}
+                </nav>
+                {{/if}}
+            </header>
+            
+            <!-- Content -->
+            <div class="doc-content">
+                {{#if showTOC}}
+                <!-- Table of Contents -->
+                <div class="toc">
+                    <div class="toc-title">Table of Contents</div>
+                    <!-- TOC will be generated by JavaScript -->
+                </div>
+                {{/if}}
+                
+                <!-- Main Content Block -->
+                {{{content}}}
+                
+                <!-- Footer -->
+                <footer style="margin-top: var(--spacing-2xl); padding-top: var(--spacing-xl); border-top: 1px solid var(--color-border-light); color: var(--color-text-secondary); font-size: var(--font-size-sm);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--spacing-md);">
+                        <div>
+                            Generated by Living Documentation Generator
+                            {{#if lastUpdated}}
+                            • Last updated: {{lastUpdated}}
+                            {{/if}}
+                        </div>
+                        <div>
+                            {{#if editUrl}}
+                            <a href="{{editUrl}}" target="_blank" rel="noopener">Edit this page</a>
+                            {{/if}}
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="{{baseUrl}}/scripts/documentation.js"></script>
+    
+    <!-- Syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+        // Initialize syntax highlighting
+        document.addEventListener('DOMContentLoaded', function() {
+            hljs.highlightAll();
+        });
+    </script>
+    
+    <!-- Custom JavaScript if provided -->
+    {{#if customJS}}
+    <script>
+        {{customJS}}
+    </script>
+    {{/if}}
+    
+    <!-- Analytics or other tracking scripts -->
+    {{#if analytics}}
+    {{{analytics}}}
+    {{/if}}
+</body>
+</html>

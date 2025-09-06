@@ -1,0 +1,164 @@
+<!-- Function Documentation Template -->
+<div class="card" id="{{anchor}}">
+    <div class="card-header">
+        <h3 class="card-title">
+            {{name}}
+            {{#if isAsync}}
+            <span class="badge badge-primary">async</span>
+            {{/if}}
+            {{#if isExported}}
+            <span class="badge badge-success">exported</span>
+            {{/if}}
+        </h3>
+        {{#if description}}
+        <p class="card-subtitle">{{description}}</p>
+        {{/if}}
+    </div>
+    
+    <!-- Function Signature -->
+    <div style="margin-bottom: var(--spacing-lg);">
+        <h4>Signature</h4>
+        <div class="code-block-enhanced">
+            <div class="code-block-header">
+                <span class="code-language-badge">{{language}}</span>
+                <div class="code-actions">
+                    <button class="copy-button">📋 Copy</button>
+                </div>
+            </div>
+            <pre><code class="language-{{language}}">{{signature}}</code></pre>
+        </div>
+    </div>
+    
+    {{#if parameters}}
+    <!-- Parameters -->
+    <div style="margin-bottom: var(--spacing-lg);">
+        <h4>Parameters</h4>
+        <ul class="parameter-list">
+            {{#each parameters}}
+            <li class="parameter-item">
+                <div style="display: flex; align-items: baseline; gap: var(--spacing-sm); margin-bottom: var(--spacing-xs);">
+                    <code class="parameter-name">{{name}}</code>
+                    {{#if type}}
+                    <span class="parameter-type">{{type}}</span>
+                    {{/if}}
+                    {{#if optional}}
+                    <span class="badge badge-secondary">optional</span>
+                    {{else}}
+                    <span class="parameter-required">required</span>
+                    {{/if}}
+                </div>
+                {{#if description}}
+                <p style="margin: 0 0 var(--spacing-xs) 0; color: var(--color-text-secondary); font-size: var(--font-size-sm);">
+                    {{description}}
+                </p>
+                {{/if}}
+                {{#if defaultValue}}
+                <p style="margin: 0; font-size: var(--font-size-sm);">
+                    <strong>Default:</strong> <code>{{defaultValue}}</code>
+                </p>
+                {{/if}}
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+    {{/if}}
+    
+    {{#if returnType}}
+    <!-- Return Value -->
+    <div style="margin-bottom: var(--spacing-lg);">
+        <h4>Returns</h4>
+        <div style="display: flex; align-items: baseline; gap: var(--spacing-sm);">
+            <code class="parameter-type">{{returnType}}</code>
+        </div>
+        {{#if returnDescription}}
+        <p style="margin: var(--spacing-xs) 0 0 0; color: var(--color-text-secondary);">
+            {{returnDescription}}
+        </p>
+        {{/if}}
+    </div>
+    {{/if}}
+    
+    {{#if examples}}
+    <!-- Examples -->
+    <div style="margin-bottom: var(--spacing-lg);">
+        <h4>Examples</h4>
+        {{#each examples}}
+        <div style="margin-bottom: var(--spacing-md);">
+            {{#if title}}
+            <h5>{{title}}</h5>
+            {{/if}}
+            {{#if description}}
+            <p style="color: var(--color-text-secondary);">{{description}}</p>
+            {{/if}}
+            
+            <div class="code-block-enhanced">
+                <div class="code-block-header">
+                    <span class="code-language-badge">{{language}}</span>
+                    <div class="code-actions">
+                        <button class="copy-button">📋 Copy</button>
+                        {{#if runnable}}
+                        <button class="code-action-button run-code-button">▶️ Run</button>
+                        {{/if}}
+                    </div>
+                </div>
+                <pre><code class="language-{{language}}">{{code}}</code></pre>
+            </div>
+            
+            {{#if output}}
+            <div style="margin-top: var(--spacing-sm);">
+                <h6>Output</h6>
+                <div class="code-block-enhanced">
+                    <pre><code>{{output}}</code></pre>
+                </div>
+            </div>
+            {{/if}}
+        </div>
+        {{/each}}
+    </div>
+    {{/if}}
+    
+    {{#if throws}}
+    <!-- Exceptions -->
+    <div style="margin-bottom: var(--spacing-lg);">
+        <h4>Throws</h4>
+        <ul class="parameter-list">
+            {{#each throws}}
+            <li class="parameter-item">
+                <div style="display: flex; align-items: baseline; gap: var(--spacing-sm);">
+                    <code class="parameter-name">{{type}}</code>
+                </div>
+                {{#if description}}
+                <p style="margin: var(--spacing-xs) 0 0 0; color: var(--color-text-secondary); font-size: var(--font-size-sm);">
+                    {{description}}
+                </p>
+                {{/if}}
+                {{#if when}}
+                <p style="margin: var(--spacing-xs) 0 0 0; font-size: var(--font-size-sm);">
+                    <strong>When:</strong> {{when}}
+                </p>
+                {{/if}}
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+    {{/if}}
+    
+    {{#if seeAlso}}
+    <!-- See Also -->
+    <div>
+        <h4>See Also</h4>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+            {{#each seeAlso}}
+            <li style="margin-bottom: var(--spacing-xs);">
+                <a href="{{url}}" class="nav-link">{{name}}</a>
+                {{#if description}}
+                <span style="color: var(--color-text-secondary); font-size: var(--font-size-sm);">
+                    - {{description}}
+                </span>
+                {{/if}}
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+    {{/if}}
+</div>

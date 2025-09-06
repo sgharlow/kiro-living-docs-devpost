@@ -1,0 +1,31 @@
+{
+  "timestamp": "2025-09-06T18:11:56.372Z",
+  "success": true,
+  "performance": {
+    "analysisTime": 477,
+    "memoryUsed": 2,
+    "analysisTimeOk": true,
+    "memoryUsageOk": true
+  },
+  "analysis": {
+    "filesAnalyzed": 20,
+    "languagesDetected": [
+      "typescript",
+      "go",
+      "python"
+    ],
+    "totalFunctions": 50,
+    "totalClasses": 27,
+    "totalApiEndpoints": 12
+  },
+  "documentation": {
+    "markdownSize": 1808,
+    "webAssetsCount": 20,
+    "openApiEndpoints": 8
+  },
+  "demoServices": {
+    "backendFiles": 8,
+    "pythonFiles": 2,
+    "goFiles": 2
+  }
+}

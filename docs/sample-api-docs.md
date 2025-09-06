@@ -1,0 +1,1840 @@
+# API Documentation
+
+A sample API for testing documentation generation
+
+## /api/users
+
+### GET /api/users
+
+#### Parameters
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `req` | `Request` | Yes | Express request object |
+| `res` | `Response` | Yes | Express response object |
+
+#### Example Request
+
+```bash
+curl -X GET "http://localhost:3000/api/users" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json"
+```
+
+#### Example Response
+
+```json
+[
+  {
+    "id": "123",
+    "name": "Example users",
+    "description": "This is an example users",
+    "createdAt": "2023-01-01T00:00:00Z",
+    "updatedAt": "2023-01-01T00:00:00Z"
+  }
+]
+```
+
+### GET /api/users/:id
+
+#### Parameters
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `id` | `string` | Yes | Path parameter from /api/users/:id |
+| `req` | `Request` | Yes | Express request object |
+| `res` | `Response` | Yes | Express response object |
+
+#### Example Request
+
+```bash
+curl -X GET "http://localhost:3000/api/users/123" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json"
+```
+
+#### Example Response
+
+```json
+{
+  "id": "123",
+  "name": "Example users",
+  "description": "This is an example users",
+  "createdAt": "2023-01-01T00:00:00Z",
+  "updatedAt": "2023-01-01T00:00:00Z"
+}
+```
+
+### POST /api/users
+
+Middleware: authenticate
+
+#### Parameters
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `req` | `Request` | Yes | Express request object |
+| `res` | `Response` | Yes | Express response object |
+
+#### Example Request
+
+```bash
+curl -X POST "http://localhost:3000/api/users" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -d '{"name":"Example users","description":"This is an example users for POST /api/users","data":{"key":"value","number":42,"active":true}}'
+```
+
+```json
+{
+  "name": "Example users",
+  "description": "This is an example users for POST /api/users",
+  "data": {
+    "key": "value",
+    "number": 42,
+    "active": true
+  }
+}
+```
+
+#### Example Response
+
+```json
+{
+  "id": "123",
+  "name": "Example users",
+  "description": "This is an example users",
+  "createdAt": "2023-01-01T00:00:00Z",
+  "updatedAt": "2023-01-01T00:00:00Z"
+}
+```
+
+### PUT /api/users/:id
+
+Middleware: authenticate, authorize
+
+#### Parameters
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `id` | `string` | Yes | Path parameter from /api/users/:id |
+| `req` | `Request` | Yes | Express request object |
+| `res` | `Response` | Yes | Express response object |
+
+#### Example Request
+
+```bash
+curl -X PUT "http://localhost:3000/api/users/123" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -d '{"name":"Example users","description":"This is an example users for PUT /api/users/:id","data":{"key":"value","number":42,"active":true}}'
+```
+
+```json
+{
+  "name": "Example users",
+  "description": "This is an example users for PUT /api/users/:id",
+  "data": {
+    "key": "value",
+    "number": 42,
+    "active": true
+  }
+}
+```
+
+#### Example Response
+
+```json
+{
+  "id": "123",
+  "name": "Example users",
+  "description": "This is an example users",
+  "createdAt": "2023-01-01T00:00:00Z",
+  "updatedAt": "2023-01-01T00:00:00Z"
+}
+```
+
+### DELETE /api/users/:id
+
+Middleware: authenticate, authorize
+
+#### Parameters
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `id` | `string` | Yes | Path parameter from /api/users/:id |
+| `req` | `Request` | Yes | Express request object |
+| `res` | `Response` | Yes | Express response object |
+
+#### Example Request
+
+```bash
+curl -X DELETE "http://localhost:3000/api/users/123" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json"
+```
+
+#### Example Response
+
+```json
+{
+  "message": "Deleted successfully"
+}
+```
+
+## /profile
+
+### GET /profile
+
+Middleware: authenticate
+
+#### Parameters
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `req` | `Request` | Yes | Express request object |
+| `res` | `Response` | Yes | Express response object |
+
+#### Example Request
+
+```bash
+curl -X GET "http://localhost:3000/profile" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json"
+```
+
+#### Example Response
+
+```json
+[
+  {
+    "id": "123",
+    "name": "Example profile",
+    "description": "This is an example profile",
+    "createdAt": "2023-01-01T00:00:00Z",
+    "updatedAt": "2023-01-01T00:00:00Z"
+  }
+]
+```
+
+## /profile/avatar
+
+### POST /profile/avatar
+
+Middleware: authenticate, uploadMiddleware
+
+#### Parameters
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `req` | `Request` | Yes | Express request object |
+| `res` | `Response` | Yes | Express response object |
+
+#### Example Request
+
+```bash
+curl -X POST "http://localhost:3000/profile/avatar" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -d '{"name":"Example avatar","description":"This is an example avatar for POST /profile/avatar","data":{"key":"value","number":42,"active":true}}'
+```
+
+```json
+{
+  "name": "Example avatar",
+  "description": "This is an example avatar for POST /profile/avatar",
+  "data": {
+    "key": "value",
+    "number": 42,
+    "active": true
+  }
+}
+```
+
+#### Example Response
+
+```json
+{
+  "id": "123",
+  "name": "Example avatar",
+  "description": "This is an example avatar",
+  "createdAt": "2023-01-01T00:00:00Z",
+  "updatedAt": "2023-01-01T00:00:00Z"
+}
+```
+
+## /api/users/posts
+
+### GET /api/users/:userId/posts
+
+#### Parameters
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `userId` | `string` | Yes | Path parameter from /api/users/:userId/posts |
+| `req` | `Request` | Yes | Express request object |
+| `res` | `Response` | Yes | Express response object |
+
+#### Example Request
+
+```bash
+curl -X GET "http://localhost:3000/api/users/123/posts" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json"
+```
+
+#### Example Response
+
+```json
+[
+  {
+    "id": "123",
+    "name": "Example posts",
+    "description": "This is an example posts",
+    "createdAt": "2023-01-01T00:00:00Z",
+    "updatedAt": "2023-01-01T00:00:00Z"
+  }
+]
+```
+
+### POST /api/users/:userId/posts
+
+Middleware: authenticate
+
+#### Parameters
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `userId` | `string` | Yes | Path parameter from /api/users/:userId/posts |
+| `req` | `Request` | Yes | Express request object |
+| `res` | `Response` | Yes | Express response object |
+
+#### Example Request
+
+```bash
+curl -X POST "http://localhost:3000/api/users/123/posts" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -d '{"name":"Example posts","description":"This is an example posts for POST /api/users/:userId/posts","data":{"key":"value","number":42,"active":true}}'
+```
+
+```json
+{
+  "name": "Example posts",
+  "description": "This is an example posts for POST /api/users/:userId/posts",
+  "data": {
+    "key": "value",
+    "number": 42,
+    "active": true
+  }
+}
+```
+
+#### Example Response
+
+```json
+{
+  "id": "123",
+  "name": "Example posts",
+  "description": "This is an example posts",
+  "createdAt": "2023-01-01T00:00:00Z",
+  "updatedAt": "2023-01-01T00:00:00Z"
+}
+```
+
+## /api/posts/comments
+
+### GET /api/posts/:postId/comments
+
+#### Parameters
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `postId` | `string` | Yes | Path parameter from /api/posts/:postId/comments |
+| `req` | `Request` | Yes | Express request object |
+| `res` | `Response` | Yes | Express response object |
+
+#### Example Request
+
+```bash
+curl -X GET "http://localhost:3000/api/posts/123/comments" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json"
+```
+
+#### Example Response
+
+```json
+[
+  {
+    "id": "123",
+    "name": "Example comments",
+    "description": "This is an example comments",
+    "createdAt": "2023-01-01T00:00:00Z",
+    "updatedAt": "2023-01-01T00:00:00Z"
+  }
+]
+```
+
+## /health
+
+### GET /health
+
+#### Parameters
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `req` | `Request` | Yes | Express request object |
+| `res` | `Response` | Yes | Express response object |
+
+#### Example Request
+
+```bash
+curl -X GET "http://localhost:3000/health" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json"
+```
+
+#### Example Response
+
+```json
+[
+  {
+    "id": "123",
+    "name": "Example health",
+    "description": "This is an example health",
+    "createdAt": "2023-01-01T00:00:00Z",
+    "updatedAt": "2023-01-01T00:00:00Z"
+  }
+]
+```
+
+## OpenAPI Specification
+
+```json
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Sample API",
+    "version": "1.0.0",
+    "description": "A sample API for testing documentation generation",
+    "contact": {
+      "name": "Development Team"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Development server"
+    },
+    {
+      "url": "https://api.example.com",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/api/users": {
+      "get": {
+        "summary": "Get users",
+        "description": "GET /api/users - Handled by anonymous",
+        "operationId": "get_api_users",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Number of items to return",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 10
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "description": "Number of items to skip",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "users ID"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "users name"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "users description"
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Creation timestamp"
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Last update timestamp"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "name"
+                    ]
+                  }
+                },
+                "example": [
+                  {
+                    "id": "123",
+                    "name": "Example users",
+                    "description": "This is an example users",
+                    "createdAt": "2023-01-01T00:00:00Z",
+                    "updatedAt": "2023-01-01T00:00:00Z"
+                  }
+                ]
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "Bad Request",
+                  "message": "Invalid input parameters"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "Internal Server Error",
+                  "message": "An unexpected error occurred"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      },
+      "post": {
+        "summary": "Create users",
+        "description": "Middleware: authenticate",
+        "operationId": "post_api_users",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "users ID"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "users name"
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "users description"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Creation timestamp"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Last update timestamp"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name"
+                  ]
+                },
+                "example": {
+                  "id": "123",
+                  "name": "Example users",
+                  "description": "This is an example users",
+                  "createdAt": "2023-01-01T00:00:00Z",
+                  "updatedAt": "2023-01-01T00:00:00Z"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "Bad Request",
+                  "message": "Invalid input parameters"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "Internal Server Error",
+                  "message": "An unexpected error occurred"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "api"
+        ],
+        "requestBody": {
+          "description": "Request body for POST /api/users",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "users name"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "users description"
+                  }
+                },
+                "required": [
+                  "name"
+                ]
+              },
+              "example": {
+                "name": "Example users",
+                "description": "This is an example users"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/{id}": {
+      "get": {
+        "summary": "Get users",
+        "description": "GET /api/users/:id - Handled by anonymous",
+        "operationId": "get_api_users",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Path parameter from /api/users/:id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "users ID"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "users name"
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "users description"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Creation timestamp"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Last update timestamp"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name"
+                  ]
+                },
+                "example": {
+                  "id": "123",
+                  "name": "Example users",
+                  "description": "This is an example users",
+                  "createdAt": "2023-01-01T00:00:00Z",
+                  "updatedAt": "2023-01-01T00:00:00Z"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "Bad Request",
+                  "message": "Invalid input parameters"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "Internal Server Error",
+                  "message": "An unexpected error occurred"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      },
+      "put": {
+        "summary": "Update users",
+        "description": "Middleware: authenticate, authorize",
+        "operationId": "put_api_users",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Path parameter from /api/users/:id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "users ID"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "users name"
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "users description"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Creation timestamp"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Last update timestamp"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name"
+                  ]
+                },
+                "example": {
+                  "id": "123",
+                  "name": "Example users",
+                  "description": "This is an example users",
+                  "createdAt": "2023-01-01T00:00:00Z",
+                  "updatedAt": "2023-01-01T00:00:00Z"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "Bad Request",
+                  "message": "Invalid input parameters"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "Internal Server Error",
+                  "message": "An unexpected error occurred"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "api"
+        ],
+        "requestBody": {
+          "description": "Request body for PUT /api/users/:id",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "users name"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "users description"
+                  }
+                },
+                "required": [
+                  "name"
+                ]
+              },
+              "example": {
+                "name": "Example users",
+                "description": "This is an example users"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete users",
+        "description": "Middleware: authenticate, authorize",
+        "operationId": "delete_api_users",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Path parameter from /api/users/:id"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Deleted successfully"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "Bad Request",
+                  "message": "Invalid input parameters"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "Internal Server Error",
+                  "message": "An unexpected error occurred"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      }
+    },
+    "/profile": {
+      "get": {
+        "summary": "Get profile",
+        "description": "Middleware: authenticate",
+        "operationId": "get_profile",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Number of items to return",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 10
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "description": "Number of items to skip",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "profile ID"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "profile name"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "profile description"
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Creation timestamp"
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Last update timestamp"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "name"
+                    ]
+                  }
+                },
+                "example": [
+                  {
+                    "id": "123",
+                    "name": "Example profile",
+                    "description": "This is an example profile",
+                    "createdAt": "2023-01-01T00:00:00Z",
+                    "updatedAt": "2023-01-01T00:00:00Z"
+                  }
+                ]
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "Bad Request",
+                  "message": "Invalid input parameters"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "Internal Server Error",
+                  "message": "An unexpected error occurred"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "profile"
+        ]
+      }
+    },
+    "/profile/avatar": {
+      "post": {
+        "summary": "Create avatar",
+        "description": "Middleware: authenticate, uploadMiddleware",
+        "operationId": "post_profile_avatar",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "avatar ID"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "avatar name"
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "avatar description"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Creation timestamp"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Last update timestamp"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name"
+                  ]
+                },
+                "example": {
+                  "id": "123",
+                  "name": "Example avatar",
+                  "description": "This is an example avatar",
+                  "createdAt": "2023-01-01T00:00:00Z",
+                  "updatedAt": "2023-01-01T00:00:00Z"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "Bad Request",
+                  "message": "Invalid input parameters"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "Internal Server Error",
+                  "message": "An unexpected error occurred"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "profile"
+        ],
+        "requestBody": {
+          "description": "Request body for POST /profile/avatar",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "avatar name"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "avatar description"
+                  }
+                },
+                "required": [
+                  "name"
+                ]
+              },
+              "example": {
+                "name": "Example avatar",
+                "description": "This is an example avatar"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/{userId}/posts": {
+      "get": {
+        "summary": "Get posts",
+        "description": "GET /api/users/:userId/posts - Handled by anonymous",
+        "operationId": "get_api_users_posts",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Path parameter from /api/users/:userId/posts"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Number of items to return",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 10
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "description": "Number of items to skip",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "posts ID"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "posts name"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "posts description"
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Creation timestamp"
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Last update timestamp"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "name"
+                    ]
+                  }
+                },
+                "example": [
+                  {
+                    "id": "123",
+                    "name": "Example posts",
+                    "description": "This is an example posts",
+                    "createdAt": "2023-01-01T00:00:00Z",
+                    "updatedAt": "2023-01-01T00:00:00Z"
+                  }
+                ]
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "Bad Request",
+                  "message": "Invalid input parameters"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "Internal Server Error",
+                  "message": "An unexpected error occurred"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      },
+      "post": {
+        "summary": "Create posts",
+        "description": "Middleware: authenticate",
+        "operationId": "post_api_users_posts",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Path parameter from /api/users/:userId/posts"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "posts ID"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "posts name"
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "posts description"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Creation timestamp"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Last update timestamp"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name"
+                  ]
+                },
+                "example": {
+                  "id": "123",
+                  "name": "Example posts",
+                  "description": "This is an example posts",
+                  "createdAt": "2023-01-01T00:00:00Z",
+                  "updatedAt": "2023-01-01T00:00:00Z"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "Bad Request",
+                  "message": "Invalid input parameters"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "Internal Server Error",
+                  "message": "An unexpected error occurred"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "api"
+        ],
+        "requestBody": {
+          "description": "Request body for POST /api/users/:userId/posts",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "posts name"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "posts description"
+                  }
+                },
+                "required": [
+                  "name"
+                ]
+              },
+              "example": {
+                "name": "Example posts",
+                "description": "This is an example posts"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/posts/{postId}/comments": {
+      "get": {
+        "summary": "Get comments",
+        "description": "GET /api/posts/:postId/comments - Handled by anonymous",
+        "operationId": "get_api_posts_comments",
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Path parameter from /api/posts/:postId/comments"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Number of items to return",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 10
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "description": "Number of items to skip",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "comments ID"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "comments name"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "comments description"
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Creation timestamp"
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Last update timestamp"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "name"
+                    ]
+                  }
+                },
+                "example": [
+                  {
+                    "id": "123",
+                    "name": "Example comments",
+                    "description": "This is an example comments",
+                    "createdAt": "2023-01-01T00:00:00Z",
+                    "updatedAt": "2023-01-01T00:00:00Z"
+                  }
+                ]
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "Bad Request",
+                  "message": "Invalid input parameters"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "Internal Server Error",
+                  "message": "An unexpected error occurred"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      }
+    },
+    "/health": {
+      "get": {
+        "summary": "Get health",
+        "description": "GET /health - Handled by anonymous",
+        "operationId": "get_health",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Number of items to return",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 10
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "description": "Number of items to skip",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "health ID"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "health name"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "health description"
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Creation timestamp"
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Last update timestamp"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "name"
+                    ]
+                  }
+                },
+                "example": [
+                  {
+                    "id": "123",
+                    "name": "Example health",
+                    "description": "This is an example health",
+                    "createdAt": "2023-01-01T00:00:00Z",
+                    "updatedAt": "2023-01-01T00:00:00Z"
+                  }
+                ]
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "Bad Request",
+                  "message": "Invalid input parameters"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "Internal Server Error",
+                  "message": "An unexpected error occurred"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "health"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error",
+          "message"
+        ]
+      }
+    }
+  }
+}
+```
+

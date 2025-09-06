@@ -1,0 +1,38 @@
+{
+  "events": [
+    {
+      "id": "event_1757183988432_cy1zjrd57",
+      "type": "action",
+      "category": "analytics",
+      "action": "enabled",
+      "label": "",
+      "value": 0,
+      "timestamp": "2025-09-06T18:39:48.432Z",
+      "sessionId": "session_1757183988425_8b3fvg1ie",
+      "metadata": {}
+    },
+    {
+      "id": "event_1757183988432_ks2w2xo6b",
+      "type": "action",
+      "category": "test",
+      "action": "enabled",
+      "label": "",
+      "value": 0,
+      "timestamp": "2025-09-06T18:39:48.432Z",
+      "sessionId": "session_1757183988425_8b3fvg1ie",
+      "metadata": {}
+    }
+  ],
+  "sessions": [
+    {
+      "id": "session_1757183988425_8b3fvg1ie",
+      "startTime": "2025-09-06T18:39:48.425Z",
+      "userAgent": "unknown",
+      "platform": "win32",
+      "nodeVersion": "v22.17.0",
+      "eventsCount": 2,
+      "lastActivity": "2025-09-06T18:39:48.432Z"
+    }
+  ],
+  "lastSaved": "2025-09-06T18:40:48.430Z"
+}

@@ -1,0 +1,173 @@
+<!-- API Endpoint Template -->
+<div class="api-endpoint" id="{{anchor}}">
+    <div class="api-endpoint-header">
+        <div style="display: flex; align-items: center; gap: var(--spacing-md);">
+            <span class="api-method api-method-{{method}}">{{method}}</span>
+            <code class="api-path">{{path}}</code>
+        </div>
+        {{#if description}}
+        <p style="margin: var(--spacing-sm) 0 0 0; color: var(--color-text-secondary);">
+            {{description}}
+        </p>
+        {{/if}}
+    </div>
+    
+    <div class="api-endpoint-body">
+        {{#if parameters}}
+        <div class="api-section">
+            <h4 class="api-section-title">Parameters</h4>
+            <ul class="parameter-list">
+                {{#each parameters}}
+                <li class="parameter-item">
+                    <div style="display: flex; align-items: baseline; gap: var(--spacing-sm);">
+                        <code class="parameter-name">{{name}}</code>
+                        <span class="parameter-type">{{type}}</span>
+                        {{#unless optional}}
+                        <span class="parameter-required">required</span>
+                        {{/unless}}
+                    </div>
+                    {{#if description}}
+                    <p style="margin: var(--spacing-xs) 0 0 0; color: var(--color-text-secondary); font-size: var(--font-size-sm);">
+                        {{description}}
+                    </p>
+                    {{/if}}
+                    {{#if defaultValue}}
+                    <p style="margin: var(--spacing-xs) 0 0 0; font-size: var(--font-size-sm);">
+                        <strong>Default:</strong> <code>{{defaultValue}}</code>
+                    </p>
+                    {{/if}}
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+        {{/if}}
+        
+        {{#if requestBody}}
+        <div class="api-section">
+            <h4 class="api-section-title">Request Body</h4>
+            <div class="code-block-enhanced">
+                <div class="code-block-header">
+                    <span class="code-language-badge">{{requestBody.contentType}}</span>
+                    <div class="code-actions">
+                        <button class="copy-button">📋 Copy</button>
+                    </div>
+                </div>
+                <pre><code class="language-{{requestBody.language}}">{{requestBody.example}}</code></pre>
+            </div>
+            {{#if requestBody.schema}}
+            <div style="margin-top: var(--spacing-md);">
+                <h5>Schema</h5>
+                <ul class="parameter-list">
+                    {{#each requestBody.schema}}
+                    <li class="parameter-item">
+                        <div style="display: flex; align-items: baseline; gap: var(--spacing-sm);">
+                            <code class="parameter-name">{{name}}</code>
+                            <span class="parameter-type">{{type}}</span>
+                            {{#unless optional}}
+                            <span class="parameter-required">required</span>
+                            {{/unless}}
+                        </div>
+                        {{#if description}}
+                        <p style="margin: var(--spacing-xs) 0 0 0; color: var(--color-text-secondary); font-size: var(--font-size-sm);">
+                            {{description}}
+                        </p>
+                        {{/if}}
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+            {{/if}}
+        </div>
+        {{/if}}
+        
+        {{#if responses}}
+        <div class="api-section">
+            <h4 class="api-section-title">Responses</h4>
+            {{#each responses}}
+            <div style="margin-bottom: var(--spacing-lg);">
+                <h5 style="display: flex; align-items: center; gap: var(--spacing-sm);">
+                    <span class="badge {{#if success}}badge-success{{else}}badge-error{{/if}}">
+                        {{statusCode}}
+                    </span>
+                    {{description}}
+                </h5>
+                
+                {{#if example}}
+                <div class="code-block-enhanced">
+                    <div class="code-block-header">
+                        <span class="code-language-badge">{{contentType}}</span>
+                        <div class="code-actions">
+                            <button class="copy-button">📋 Copy</button>
+                        </div>
+                    </div>
+                    <pre><code class="language-{{language}}">{{example}}</code></pre>
+                </div>
+                {{/if}}
+                
+                {{#if schema}}
+                <div style="margin-top: var(--spacing-md);">
+                    <h6>Response Schema</h6>
+                    <ul class="parameter-list">
+                        {{#each schema}}
+                        <li class="parameter-item">
+                            <div style="display: flex; align-items: baseline; gap: var(--spacing-sm);">
+                                <code class="parameter-name">{{name}}</code>
+                                <span class="parameter-type">{{type}}</span>
+                            </div>
+                            {{#if description}}
+                            <p style="margin: var(--spacing-xs) 0 0 0; color: var(--color-text-secondary); font-size: var(--font-size-sm);">
+                                {{description}}
+                            </p>
+                            {{/if}}
+                        </li>
+                        {{/each}}
+                    </ul>
+                </div>
+                {{/if}}
+            </div>
+            {{/each}}
+        </div>
+        {{/if}}
+        
+        {{#if examples}}
+        <div class="api-section">
+            <h4 class="api-section-title">Examples</h4>
+            {{#each examples}}
+            <div style="margin-bottom: var(--spacing-lg);">
+                <h5>{{title}}</h5>
+                {{#if description}}
+                <p style="color: var(--color-text-secondary);">{{description}}</p>
+                {{/if}}
+                
+                <div class="interactive-code">
+                    <div class="interactive-code-tabs">
+                        {{#each languages}}
+                        <button class="interactive-code-tab {{#if @first}}active{{/if}}">
+                            {{name}}
+                        </button>
+                        {{/each}}
+                    </div>
+                    
+                    {{#each languages}}
+                    <div class="interactive-code-content {{#if @first}}active{{/if}}">
+                        <div class="code-block-enhanced">
+                            <div class="code-block-header">
+                                <span class="code-language-badge">{{name}}</span>
+                                <div class="code-actions">
+                                    <button class="copy-button">📋 Copy</button>
+                                    {{#if runnable}}
+                                    <button class="code-action-button run-code-button">▶️ Run</button>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            <pre><code class="language-{{language}}">{{code}}</code></pre>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        {{/if}}
+    </div>
+</div>

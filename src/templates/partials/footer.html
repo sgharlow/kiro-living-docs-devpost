@@ -1,0 +1,716 @@
+<!-- Documentation Footer Component -->
+<footer class="doc-footer">
+    <div class="footer-content">
+        <!-- Main Footer Information -->
+        <div class="footer-main">
+            <div class="footer-section">
+                <h4 class="footer-title">{{projectName}}</h4>
+                <p class="footer-description">
+                    {{#if description}}
+                    {{description}}
+                    {{else}}
+                    Living documentation generated automatically from your codebase.
+                    {{/if}}
+                </p>
+                
+                {{#if version}}
+                <div class="footer-version">
+                    <span class="version-label">Version:</span>
+                    <span class="version-number">{{version}}</span>
+                    {{#if releaseDate}}
+                    <span class="version-date">Released {{releaseDate}}</span>
+                    {{/if}}
+                </div>
+                {{/if}}
+            </div>
+            
+            <div class="footer-section">
+                <h4 class="footer-title">Quick Links</h4>
+                <ul class="footer-links">
+                    {{#if quickLinks}}
+                    {{#each quickLinks}}
+                    <li>
+                        <a href="{{url}}" class="footer-link" {{#if external}}target="_blank" rel="noopener"{{/if}}>
+                            {{name}}
+                            {{#if external}}<span class="external-icon">↗</span>{{/if}}
+                        </a>
+                    </li>
+                    {{/each}}
+                    {{else}}
+                    <li><a href="#overview" class="footer-link">Overview</a></li>
+                    <li><a href="#api" class="footer-link">API Reference</a></li>
+                    <li><a href="#examples" class="footer-link">Examples</a></li>
+                    <li><a href="#changelog" class="footer-link">Changelog</a></li>
+                    {{/if}}
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4 class="footer-title">Resources</h4>
+                <ul class="footer-links">
+                    {{#if githubUrl}}
+                    <li>
+                        <a href="{{githubUrl}}" class="footer-link" target="_blank" rel="noopener">
+                            GitHub Repository <span class="external-icon">↗</span>
+                        </a>
+                    </li>
+                    {{/if}}
+                    
+                    {{#if npmUrl}}
+                    <li>
+                        <a href="{{npmUrl}}" class="footer-link" target="_blank" rel="noopener">
+                            NPM Package <span class="external-icon">↗</span>
+                        </a>
+                    </li>
+                    {{/if}}
+                    
+                    {{#if issuesUrl}}
+                    <li>
+                        <a href="{{issuesUrl}}" class="footer-link" target="_blank" rel="noopener">
+                            Report Issues <span class="external-icon">↗</span>
+                        </a>
+                    </li>
+                    {{/if}}
+                    
+                    {{#if discussionsUrl}}
+                    <li>
+                        <a href="{{discussionsUrl}}" class="footer-link" target="_blank" rel="noopener">
+                            Discussions <span class="external-icon">↗</span>
+                        </a>
+                    </li>
+                    {{/if}}
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4 class="footer-title">Community</h4>
+                <div class="social-links">
+                    {{#if socialLinks}}
+                    {{#each socialLinks}}
+                    <a href="{{url}}" class="social-link" target="_blank" rel="noopener" title="{{name}}">
+                        {{#if icon}}
+                        <span class="social-icon">{{icon}}</span>
+                        {{else}}
+                        <span class="social-text">{{name}}</span>
+                        {{/if}}
+                    </a>
+                    {{/each}}
+                    {{/if}}
+                </div>
+                
+                <div class="footer-stats">
+                    {{#if stats}}
+                    <div class="stat-item">
+                        <span class="stat-label">Contributors:</span>
+                        <span class="stat-value">{{stats.contributors}}</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Stars:</span>
+                        <span class="stat-value">{{stats.stars}}</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Forks:</span>
+                        <span class="stat-value">{{stats.forks}}</span>
+                    </div>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+        
+        <!-- Documentation Metadata -->
+        <div class="footer-meta">
+            <div class="meta-section">
+                <h5 class="meta-title">Documentation Info</h5>
+                <div class="meta-grid">
+                    {{#if lastUpdated}}
+                    <div class="meta-item">
+                        <span class="meta-label">Last Updated:</span>
+                        <span class="meta-value">{{lastUpdated}}</span>
+                    </div>
+                    {{/if}}
+                    
+                    {{#if buildTime}}
+                    <div class="meta-item">
+                        <span class="meta-label">Generated:</span>
+                        <span class="meta-value">{{buildTime}}</span>
+                    </div>
+                    {{/if}}
+                    
+                    {{#if coverage}}
+                    <div class="meta-item">
+                        <span class="meta-label">Coverage:</span>
+                        <span class="meta-value">{{coverage.functions}}% functions, {{coverage.lines}}% lines</span>
+                    </div>
+                    {{/if}}
+                    
+                    {{#if fileCount}}
+                    <div class="meta-item">
+                        <span class="meta-label">Files Analyzed:</span>
+                        <span class="meta-value">{{fileCount}}</span>
+                    </div>
+                    {{/if}}
+                </div>
+            </div>
+            
+            <div class="meta-section">
+                <h5 class="meta-title">Languages & Frameworks</h5>
+                <div class="tech-tags">
+                    {{#if technologies}}
+                    {{#each technologies}}
+                    <span class="tech-tag" data-tech="{{name}}">
+                        {{#if icon}}<span class="tech-icon">{{icon}}</span>{{/if}}
+                        {{name}}
+                        {{#if version}}<span class="tech-version">{{version}}</span>{{/if}}
+                    </span>
+                    {{/each}}
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer Actions -->
+        <div class="footer-actions">
+            <div class="action-group">
+                <button class="footer-action" data-action="scroll-top" title="Scroll to top">
+                    ↑ Back to Top
+                </button>
+                
+                <button class="footer-action" data-action="print" title="Print documentation">
+                    🖨️ Print
+                </button>
+                
+                <button class="footer-action" data-action="share" title="Share this page">
+                    🔗 Share
+                </button>
+                
+                {{#if editUrl}}
+                <a href="{{editUrl}}" class="footer-action" target="_blank" rel="noopener" title="Edit this page">
+                    ✏️ Edit Page
+                </a>
+                {{/if}}
+            </div>
+            
+            <div class="action-group">
+                <div class="theme-info">
+                    <span class="theme-label">Theme:</span>
+                    <span class="theme-current">Light</span>
+                </div>
+                
+                <div class="language-selector" style="display: none;">
+                    <label for="footer-language">Language:</label>
+                    <select id="footer-language" class="language-select">
+                        <option value="en">English</option>
+                        <option value="es">Español</option>
+                        <option value="fr">Français</option>
+                        <option value="de">Deutsch</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Copyright and Legal -->
+        <div class="footer-bottom">
+            <div class="copyright">
+                <p>
+                    {{#if copyright}}
+                    {{copyright}}
+                    {{else}}
+                    © {{currentYear}} {{projectName}}. Generated by Living Documentation Generator.
+                    {{/if}}
+                </p>
+                
+                {{#if license}}
+                <p class="license">
+                    Licensed under 
+                    {{#if licenseUrl}}
+                    <a href="{{licenseUrl}}" target="_blank" rel="noopener">{{license}}</a>
+                    {{else}}
+                    {{license}}
+                    {{/if}}
+                </p>
+                {{/if}}
+            </div>
+            
+            <div class="legal-links">
+                {{#if legalLinks}}
+                {{#each legalLinks}}
+                <a href="{{url}}" class="legal-link" {{#if external}}target="_blank" rel="noopener"{{/if}}>
+                    {{name}}
+                </a>
+                {{/each}}
+                {{else}}
+                <a href="/privacy" class="legal-link">Privacy Policy</a>
+                <a href="/terms" class="legal-link">Terms of Service</a>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</footer>
+
+<style>
+/* Documentation Footer Styles */
+.doc-footer {
+    background: var(--color-bg-secondary);
+    border-top: 1px solid var(--color-border-light);
+    margin-top: var(--spacing-2xl);
+    color: var(--color-text-secondary);
+}
+
+.footer-content {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    padding: var(--spacing-2xl) var(--spacing-xl);
+}
+
+/* Main Footer Sections */
+.footer-main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.footer-section {
+    min-width: 0;
+}
+
+.footer-title {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 0 0 var(--spacing-md) 0;
+}
+
+.footer-description {
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+    margin: 0 0 var(--spacing-md) 0;
+    color: var(--color-text-secondary);
+}
+
+/* Version Information */
+.footer-version {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: var(--font-size-sm);
+    margin-top: var(--spacing-md);
+}
+
+.version-label {
+    font-weight: 500;
+    color: var(--color-text-secondary);
+}
+
+.version-number {
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+    padding: 0.125rem 0.5rem;
+    border-radius: 9999px;
+    font-weight: 500;
+    font-size: var(--font-size-xs);
+}
+
+.version-date {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-xs);
+}
+
+/* Footer Links */
+.footer-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: var(--spacing-sm);
+}
+
+.footer-link {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+    transition: color var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.footer-link:hover {
+    color: var(--color-primary);
+}
+
+.external-icon {
+    font-size: var(--font-size-xs);
+    opacity: 0.7;
+}
+
+/* Social Links */
+.social-links {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--color-bg-tertiary);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    border-radius: 50%;
+    transition: all var(--transition-fast);
+    font-size: var(--font-size-sm);
+}
+
+.social-link:hover {
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+    transform: translateY(-2px);
+}
+
+.social-icon {
+    font-size: var(--font-size-base);
+}
+
+.social-text {
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+}
+
+/* Footer Stats */
+.footer-stats {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--font-size-sm);
+}
+
+.stat-label {
+    color: var(--color-text-secondary);
+}
+
+.stat-value {
+    font-weight: 500;
+    color: var(--color-text-primary);
+}
+
+/* Documentation Metadata */
+.footer-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+    padding: var(--spacing-lg);
+    background: var(--color-bg-primary);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--border-radius);
+}
+
+.meta-section {
+    min-width: 0;
+}
+
+.meta-title {
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 0 0 var(--spacing-sm) 0;
+}
+
+.meta-grid {
+    display: grid;
+    gap: var(--spacing-sm);
+}
+
+.meta-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--font-size-sm);
+    padding: var(--spacing-xs) 0;
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+.meta-item:last-child {
+    border-bottom: none;
+}
+
+.meta-label {
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
+
+.meta-value {
+    color: var(--color-text-primary);
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-xs);
+}
+
+/* Technology Tags */
+.tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+.tech-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    background: var(--color-bg-tertiary);
+    color: var(--color-text-secondary);
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    border: 1px solid var(--color-border-light);
+}
+
+.tech-icon {
+    font-size: var(--font-size-xs);
+}
+
+.tech-version {
+    background: var(--color-bg-primary);
+    color: var(--color-text-muted);
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+    font-size: 0.625rem;
+    margin-left: 0.25rem;
+}
+
+/* Footer Actions */
+.footer-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-xl);
+    padding: var(--spacing-md) 0;
+    border-top: 1px solid var(--color-border-light);
+    border-bottom: 1px solid var(--color-border-light);
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+
+.action-group {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.footer-action {
+    background: var(--color-bg-primary);
+    border: 1px solid var(--color-border-medium);
+    color: var(--color-text-secondary);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: 0.375rem;
+    font-size: var(--font-size-sm);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.footer-action:hover {
+    background: var(--color-bg-tertiary);
+    color: var(--color-text-primary);
+    border-color: var(--color-border-dark);
+    transform: translateY(-1px);
+}
+
+/* Theme Info */
+.theme-info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: var(--font-size-sm);
+}
+
+.theme-label {
+    color: var(--color-text-secondary);
+}
+
+.theme-current {
+    color: var(--color-text-primary);
+    font-weight: 500;
+}
+
+/* Language Selector */
+.language-selector {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: var(--font-size-sm);
+}
+
+.language-select {
+    background: var(--color-bg-primary);
+    border: 1px solid var(--color-border-medium);
+    color: var(--color-text-primary);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.375rem;
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    font-size: var(--font-size-sm);
+}
+
+.copyright p {
+    margin: 0;
+    color: var(--color-text-muted);
+}
+
+.license {
+    margin-top: var(--spacing-xs) !important;
+}
+
+.license a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+}
+
+.license a:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+.legal-links {
+    display: flex;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.legal-link {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+    transition: color var(--transition-fast);
+}
+
+.legal-link:hover {
+    color: var(--color-text-secondary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-content {
+        padding: var(--spacing-xl) var(--spacing-md);
+    }
+    
+    .footer-main {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+    
+    .footer-meta {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+    
+    .footer-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .action-group {
+        justify-content: center;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-sm);
+    }
+    
+    .legal-links {
+        justify-content: center;
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .doc-footer {
+        break-inside: avoid;
+        border-top: 2px solid #000;
+        background: transparent !important;
+    }
+    
+    .footer-actions,
+    .social-links,
+    .footer-action {
+        display: none !important;
+    }
+    
+    .footer-content {
+        padding: 1rem 0;
+    }
+    
+    .footer-main {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    
+    .footer-meta {
+        background: transparent !important;
+        border: 1px solid #000 !important;
+        padding: 0.5rem;
+    }
+    
+    .footer-link,
+    .legal-link {
+        color: #000 !important;
+    }
+    
+    .tech-tag {
+        background: #f0f0f0 !important;
+        color: #000 !important;
+        border: 1px solid #000 !important;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .footer-action,
+    .social-link {
+        transition: none;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    .footer-meta {
+        border-width: 2px;
+    }
+    
+    .tech-tag {
+        border-width: 2px;
+    }
+}
+</style>

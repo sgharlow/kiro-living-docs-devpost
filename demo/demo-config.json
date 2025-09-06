@@ -1,0 +1,45 @@
+{
+  "projectName": "Living Docs Demo",
+  "projectDescription": "Multi-language demo showcasing living documentation capabilities",
+  "languages": ["typescript", "javascript", "python", "go"],
+  "includePaths": [
+    "frontend/src/**/*.{ts,tsx,js,jsx}",
+    "backend/src/**/*.{ts,js}",
+    "python-service/**/*.py",
+    "go-service/**/*.go",
+    "shared/**/*.{ts,js}"
+  ],
+  "excludePaths": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/build/**",
+    "**/__pycache__/**",
+    "**/vendor/**"
+  ],
+  "output": {
+    "directory": "docs",
+    "formats": ["web", "markdown", "openapi"],
+    "webServer": {
+      "port": 3000,
+      "host": "localhost"
+    }
+  },
+  "features": {
+    "realTimeUpdates": true,
+    "gitIntegration": true,
+    "apiDocumentation": true,
+    "architectureDiagrams": true,
+    "searchEnabled": true,
+    "themeToggle": true
+  },
+  "templates": {
+    "customPath": "templates/",
+    "style": "modern"
+  },
+  "analysis": {
+    "includePrivate": false,
+    "includeTodos": true,
+    "generateExamples": true,
+    "crossReference": true
+  }
+}
